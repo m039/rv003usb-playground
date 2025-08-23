@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.yarnproject": "jsonc",
+        "tinyusb_hid.h": "c",
+        "tusb_types.h": "c",
+        "stdio.h": "c",
+        "rv003usb.h": "c",
+        "funconfig.h": "c",
+        "usb_config.h": "c"
+    }
+}
