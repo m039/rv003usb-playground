@@ -8,9 +8,9 @@ No DPU, no D-, D+ resistor.
 # PrototypeBoardV1B
 Same as PrototypeBoardV1A, but with DPU, resistors in series on D- and D+.
 
-![Schematic](PrototypeBoardV1A/PrototypeBoardV1B_Schematic.png)
+![Schematic](PrototypeBoardV1B/PrototypeBoardV1B_Schematic.png)
 
 # PrototypeBoardV1C
 Same as PrototypeBoardV1B, but with a Micro-USB connector.
 
-![Schematic](PrototypeBoardV1A/PrototypeBoardV1C_Schematic.png)
+![Schematic](PrototypeBoardV1C/PrototypeBoardV1C_Schematic.png)
