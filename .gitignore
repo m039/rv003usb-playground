@@ -4,3 +4,4 @@ dist
 Sandbox/
 **/nbproject/private/
 .vs
+obj
