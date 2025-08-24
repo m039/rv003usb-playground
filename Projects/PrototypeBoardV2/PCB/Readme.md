@@ -11,6 +11,6 @@ A board with Micro USB connector.
 
 ![Schematic](PrototypeBoardV2B/PrototypeBoardV2B_Schematic.png)
 # PrototypeBoardV2C (Not tested)
-A board with USb Type-C connector with 16 pins. 
+A board with USB Type-C connector with 16 pins. 
 
 ![Schematic](PrototypeBoardV2C/PrototypeBoardV2C_Schematic.png)
