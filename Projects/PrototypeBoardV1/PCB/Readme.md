@@ -12,7 +12,7 @@ Same as PrototypeBoardV1A, but with DPU, resistors in series on D- and D+.
 
 This board has been tested and works without issues.
 
-![Schematic](PrototypeBoardV1B/PrototypeBoardV1B_Top.png)
+![Schematic](PrototypeBoardV1B/PrototypeBoardV1B_Top.jpg)
 ![Schematic](PrototypeBoardV1B/PrototypeBoardV1B_Schematic.png)
 
 # PrototypeBoardV1C (Not Recommended)
