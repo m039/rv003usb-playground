@@ -9,10 +9,32 @@
 //Defines the number of endpoints for this device. (Always add one for EP0). For two EPs, this should be 3.
 #define ENDPOINTS 3
 
+#if defined(PROTOTYPE_BOARD_V1A)
+
+#define USB_PORT C     // [A,C,D] GPIO Port to use with D+, D- and DPU
+#define USB_PIN_DP 2   // [0-4] GPIO Number for USB D+ Pin
+#define USB_PIN_DM 1   // [0-4] GPIO Number for USB D- Pin
+
+#elif defined(PROTOTYPE_BOARD_V1B)
+
 #define USB_PORT C     // [A,C,D] GPIO Port to use with D+, D- and DPU
 #define USB_PIN_DP 2   // [0-4] GPIO Number for USB D+ Pin
 #define USB_PIN_DM 4   // [0-4] GPIO Number for USB D- Pin
 #define USB_PIN_DPU 1  // [0-7] GPIO for feeding the 1.5k Pull-Up on USB D- Pin; Comment out if not used / tied to 3V3!
+
+#elif defined(PROTOTYPE_BOARD_V1C)
+
+#define USB_PORT C     // [A,C,D] GPIO Port to use with D+, D- and DPU
+#define USB_PIN_DP 2   // [0-4] GPIO Number for USB D+ Pin
+#define USB_PIN_DM 4   // [0-4] GPIO Number for USB D- Pin
+
+#elif defined(PROTOTYPE_BOARD_V2A)
+
+#define USB_PORT D     // [A,C,D] GPIO Port to use with D+, D- and DPU
+#define USB_PIN_DP 3   // [0-4] GPIO Number for USB D+ Pin
+#define USB_PIN_DM 4   // [0-4] GPIO Number for USB D- Pin
+
+#endif
 
 #define RV003USB_OPTIMIZE_FLASH 0
 #define RV003USB_HANDLE_IN_REQUEST 1
@@ -184,7 +206,7 @@ static const uint8_t config_descriptor[] = {
 };
 
 #define STR_MANUFACTURER u"m039"
-#define STR_PRODUCT      u"CH32V003 Devboard"
+#define STR_PRODUCT      u"CH32V003 PrototypeBoard"
 #define STR_SERIAL       u"000"
 
 struct usb_string_descriptor_struct {
