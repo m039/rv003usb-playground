@@ -1,4 +1,4 @@
-This repository is related to [the article (rus)](https://m039.ru/post/rv003usb-first-impression/).
+This repository is related to [the article (rus)](https://m039.ru/post/rv003usb-first-impression/), (not ready yet).
 
 - PrototypeBoardV1 - a usb board with one button, and one LED.
 - PrototypeBoardV2 - a usb board with one button, one LED, and a SPI Flash chip.
