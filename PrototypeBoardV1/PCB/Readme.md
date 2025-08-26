@@ -5,6 +5,7 @@ No DPU, no D-, D+ resistor.
 
 This board has been tested and has issues with re-enumeration.
 
+![Schematic](PrototypeBoardV1A/PrototypeBoardV1A_Top.jpg)
 ![Schematic](PrototypeBoardV1A/PrototypeBoardV1A_Schematic.png)
 
 # PrototypeBoardV1B (Recommended)
@@ -20,4 +21,5 @@ Same as PrototypeBoardV1B, but with a Micro-USB connector.
 
 This board has been tested and has issues with re-enumeration.
 
+![Schematic](PrototypeBoardV1C/PrototypeBoardV1C_Top.jpg)
 ![Schematic](PrototypeBoardV1C/PrototypeBoardV1C_Schematic.png)
