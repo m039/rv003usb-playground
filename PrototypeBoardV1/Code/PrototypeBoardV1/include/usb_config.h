@@ -171,7 +171,7 @@ static const uint8_t config_descriptor[] = {
 	HID_DESC_TYPE_REPORT,     // DescriptorType[0] (HID)
 	sizeof(keyboard_hid_desc), 0x00,
 
-	7,                        // endpoint descriptor (For endpoint 1)
+	7,                        // bLength
 	TUSB_DESC_ENDPOINT,       // Endpoint Descriptor (Must be 5)
 	0x81,                     // Endpoint Address
 	0x03,                     // Attributes
@@ -197,7 +197,7 @@ static const uint8_t config_descriptor[] = {
 	HID_DESC_TYPE_REPORT,     // DescriptorType[0] (HID)
 	sizeof(keyboard_media_hid_desc), 0x00,
 
-	7,                        // endpoint descriptor (For endpoint 1)
+	7,                        // bLength
 	TUSB_DESC_ENDPOINT,       // Endpoint Descriptor (Must be 5)
 	0x82,                     // Endpoint Address
 	0x03,                     // Attributes
