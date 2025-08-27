@@ -32,10 +32,10 @@
 static const uint8_t device_descriptor[] = {
 	18, //Length
 	TUSB_DESC_DEVICE,  //Type (Device)
-	0x00, 0x02, //Spec
+	0x10, 0x01, //Spec
 	TUSB_CLASS_UNSPECIFIED, //Device Class
-	0x0, 	//Device Subclass
-	0x0, 	//Device Protocol  (000 = use config descriptor)
+	0x01, 	//Device Subclass
+	0x03, 	//Device Protocol  (000 = use config descriptor)
 	0x08, 	//Max packet size for EP0 (This has to be 8 because of the USB Low-Speed Standard)
 	0x39, 0x00, //ID Vendor
 	0x03, 0x00, //ID Product
@@ -76,7 +76,7 @@ static const uint8_t config_descriptor[] = {
 	7,                        // bLength
 	TUSB_DESC_ENDPOINT,       // Endpoint Descriptor (Must be 5)
 	USB_DIR_IN | 1,           // Endpoint Address
-	TUSB_XFER_BULK,      	  // Attributes
+	TUSB_XFER_INTERRUPT,      // Attributes
 	0x08, 0x00,               // Size
 	0,                        // Interval
 
@@ -84,7 +84,7 @@ static const uint8_t config_descriptor[] = {
 	7,                        // bLength
 	TUSB_DESC_ENDPOINT,       // Endpoint Descriptor (Must be 5)
 	USB_DIR_OUT | 2,          // Endpoint Address
-	TUSB_XFER_BULK,      	  // Attributes
+	TUSB_XFER_INTERRUPT,      // Attributes
 	0x08, 0x00,               // Size
 	0,                        // Interval
 };

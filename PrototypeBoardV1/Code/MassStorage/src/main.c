@@ -96,17 +96,19 @@ void usb_handle_user_in_request( struct usb_endpoint * e, uint8_t * scratchpad, 
 	usb_send_empty( sendtok );
 }
 
-uint8_t buffer[32];
+uint8_t buffer[11];
 
 void usb_handle_other_control_message(struct usb_endpoint * e, struct usb_urb * s, struct rv003usb_internal * ist) {
 	uint8_t request = s->wRequestTypeLSBRequestMSB >> 8;
 
-	if (request == TUSB_REQ_SET_CONFIGURATION) {
-		memset(buffer, 0, sizeof(buffer));
-		buffer[0] = 1;
-		e->opaque = buffer;
-		e->max_len = 8;
-	}
+	// if (request == TUSB_REQ_SET_CONFIGURATION) {
+	
+	// }
+
+	memset(buffer, 0, sizeof(buffer));
+	buffer[0] = 1;
+	e->opaque = buffer;
+	e->max_len = 8;
 	
 	if (s->wRequestTypeLSBRequestMSB & USB_TYPE_VENDOR) {
 		uint8_t bRequest = s->wRequestTypeLSBRequestMSB >> 8;
@@ -118,5 +120,5 @@ void usb_handle_other_control_message(struct usb_endpoint * e, struct usb_urb * 
 		}
 	}
 
-	LogUEvent(SysTick->CNT, s->wRequestTypeLSBRequestMSB, s->lValueLSBIndexMSB, s->wLength );
+	LogUEvent(42, s->wRequestTypeLSBRequestMSB, s->lValueLSBIndexMSB, s->wLength );
 }
