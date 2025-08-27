@@ -3,7 +3,7 @@
 #include <string.h>
 #include "rv003usb.h"
 
-#define USE_SOFTWARE_RESET 1
+#define USE_SOFTWARE_RESET 0
 #define USE_KEYBOARD_TEST 0
 
 #define DEBOUNCE_TIME Ticks_from_Ms(50)
@@ -19,6 +19,8 @@ uint8_t lastDebounceState = FUN_HIGH;
 int main()
 {
 	SystemInit();
+
+	printf("Start\n");
 
 	funGpioInitA();
 
@@ -83,53 +85,29 @@ hid_keyboard_report_t buttonData = {0};
 
 void usb_handle_user_data( struct usb_endpoint * e, int current_endpoint, uint8_t * data, int len, struct rv003usb_internal * ist )
 {
-	if (current_endpoint == 0 && len > 0) {
-		if (data[0] & KEYBOARD_LED_CAPSLOCK) {
-			funDigitalWrite(LED, FUN_HIGH);
-		} else {
-			funDigitalWrite(LED, FUN_LOW);
-		}
-	}
+	LogUEvent(37, current_endpoint, len, 0 );
 }
 
 void usb_handle_user_in_request( struct usb_endpoint * e, uint8_t * scratchpad, int endp, uint32_t sendtok, struct rv003usb_internal * ist )
 {
-	if (endp == 2) {
-		uint8_t d;
-
-		if (buttonPressed) {
-			d = 1;
-		} else {
-			d = 0;
-		}
-
-		usb_send_data(&d, sizeof(d), 0, sendtok);
-		buttonPressed = 0;
-	}
-
-#if USE_KEYBOARD_TEST
-    else if( endp == 1 )
-	{
-		memset(&buttonData, 0, sizeof(buttonData));
-
-		if (buttonPressed) {
-			buttonData.keycode[0] = HID_KEY_A;
-		} else {
-			buttonData.keycode[0] = HID_KEY_NONE;
-		}
-
-		usb_send_data(&buttonData, sizeof(buttonData), 0, sendtok);
-		buttonPressed = 0;
-	}
-#endif
-
-	else
-	{
-		usb_send_empty( sendtok );
-	}
+		
+	LogUEvent(38, endp, 0, 0 );
+		
+	usb_send_empty( sendtok );
 }
 
+uint8_t buffer[32];
+
 void usb_handle_other_control_message(struct usb_endpoint * e, struct usb_urb * s, struct rv003usb_internal * ist) {
+	uint8_t request = s->wRequestTypeLSBRequestMSB >> 8;
+
+	if (request == TUSB_REQ_SET_CONFIGURATION) {
+		memset(buffer, 0, sizeof(buffer));
+		buffer[0] = 1;
+		e->opaque = buffer;
+		e->max_len = 8;
+	}
+	
 	if (s->wRequestTypeLSBRequestMSB & USB_TYPE_VENDOR) {
 		uint8_t bRequest = s->wRequestTypeLSBRequestMSB >> 8;
 
