@@ -138,6 +138,8 @@ void usb_pid_handle_in( uint32_t addr, uint8_t * data, uint32_t endp, uint32_t u
 	uint8_t * sendnow;
 	int sendtok = e->toggle_in?0b01001011:0b11000011;
 
+
+
 #if RV003USB_USE_REBOOT_FEATURE_REPORT
 	if( ist->reboot_armed == 2 )
 	{
@@ -220,7 +222,6 @@ void usb_pid_handle_data( uint32_t this_token, uint8_t * data, uint32_t which_da
 
 	e->toggle_out = !e->toggle_out;
 
-	uint32_t *baseTmp = __builtin_assume_aligned( data_in, 4 );
 
 #if RV003USB_HANDLE_USER_DATA || RV003USB_USE_REBOOT_FEATURE_REPORT || RV003USB_USB_TERMINAL
 	if( epno || ( !ist->setup_request && length > 3 )  )
@@ -318,6 +319,8 @@ void usb_pid_handle_data( uint32_t this_token, uint8_t * data, uint32_t which_da
 		// not set, but in general, there's never a situation where we really care.
 		uint32_t reqShl = s->wRequestTypeLSBRequestMSB >> 1;
 
+		//LogUEvent( 0, s->wRequestTypeLSBRequestMSB, wvi, s->wLength );
+
 		if( reqShl == (0x0921>>1) )
 		{
 			// Class request (Will be writing)  This is hid_send_feature_report
@@ -379,7 +382,6 @@ void usb_pid_handle_data( uint32_t this_token, uint8_t * data, uint32_t which_da
 					e->max_len = (swLen < elLen)?swLen:elLen;
 				}
 			}
-			
 #if RV003USB_EVENT_DEBUGGING
 			if( !e->max_len ) LogUEvent( 1234, dl->lIndexValue, dl->length, 0 );
 #endif

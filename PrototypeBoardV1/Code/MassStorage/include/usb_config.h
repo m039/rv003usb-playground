@@ -33,7 +33,7 @@ static const uint8_t device_descriptor[] = {
 	18, //Length
 	TUSB_DESC_DEVICE,  //Type (Device)
 	0x10, 0x01, //Spec
-	TUSB_CLASS_UNSPECIFIED, //Device Class
+	TUSB_CLASS_MSC, //Device Class
 	0x01, 	//Device Subclass
 	0x03, 	//Device Protocol  (000 = use config descriptor)
 	0x08, 	//Max packet size for EP0 (This has to be 8 because of the USB Low-Speed Standard)
@@ -46,9 +46,11 @@ static const uint8_t device_descriptor[] = {
 	1, //Max number of configurations
 };
 
-#define MSC_SUB_CLASS_SCSI 	6 		// SCSI transparent command set
+#define MSC_SUB_CLASS_UFI 	0x04	// Specifies how to interface Floppy Disk Drives to USB
+#define MSC_SUB_CLASS_SCSI 	0x06	// SCSI transparent command set
 
-#define MSC_PROTOCOL_BBB 	0x50 	// USB Mass Storage Class Bulk-Only (BBB) Transport 
+#define MSC_PROTOCOL_CBI	0x00	// Control/Bulk/Interrupt (CBI) Transport
+#define MSC_PROTOCOL_BBB 	0x50 	// Bulk-Only (BBB) Transport 
 
 static const uint8_t config_descriptor[] = {
 	// Configuration descriptor, USB spec 9.6.3, page 264-266, Table 9-10
@@ -68,8 +70,8 @@ static const uint8_t config_descriptor[] = {
 	0,                        // bAlternateSetting
 	2,                        // bNumEndpoints
 	TUSB_CLASS_MSC,           // bInterfaceClass
-	MSC_SUB_CLASS_SCSI,       // bInterfaceSubClass
-	MSC_PROTOCOL_BBB,    	  // bInterfaceProtocol
+	MSC_SUB_CLASS_UFI,        // bInterfaceSubClass
+	0,    	 		 // bInterfaceProtocol
 	0,                        // iInterface
 
 	// Endpoint

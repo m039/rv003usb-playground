@@ -16,6 +16,8 @@ volatile uint8_t buttonPressed = 0;
 uint8_t debounceState = FUN_HIGH;
 uint8_t lastDebounceState = FUN_HIGH;
 
+static uint8_t buffer[32];
+
 int main()
 {
 	SystemInit();
@@ -42,6 +44,13 @@ int main()
 
 
 	usb_setup();
+
+	buffer[0] = 0x55;
+	buffer[1] = 0x53;
+	buffer[2] = 0x42;
+	buffer[3] = 0x53;
+
+	usb_send_data(buffer, 13, 0, 0b11000011);
 
 	while(1) {
 #if RV003USB_EVENT_DEBUGGING
@@ -93,32 +102,17 @@ void usb_handle_user_in_request( struct usb_endpoint * e, uint8_t * scratchpad, 
 		
 	LogUEvent(38, endp, 0, 0 );
 		
-	usb_send_empty( sendtok );
+	usb_send_data(buffer, 8, 1, sendtok);
 }
 
-uint8_t buffer[11];
-
 void usb_handle_other_control_message(struct usb_endpoint * e, struct usb_urb * s, struct rv003usb_internal * ist) {
-	uint8_t request = s->wRequestTypeLSBRequestMSB >> 8;
+	buffer[0] = 0x55;
+	buffer[1] = 0x53;
+	buffer[2] = 0x42;
+	buffer[3] = 0x53;
 
-	// if (request == TUSB_REQ_SET_CONFIGURATION) {
-	
-	// }
-
-	memset(buffer, 0, sizeof(buffer));
-	buffer[0] = 1;
 	e->opaque = buffer;
-	e->max_len = 8;
+	e->max_len = 13;
 	
-	if (s->wRequestTypeLSBRequestMSB & USB_TYPE_VENDOR) {
-		uint8_t bRequest = s->wRequestTypeLSBRequestMSB >> 8;
-
-		if (bRequest == 1) {
-			funDigitalWrite(LED, FUN_HIGH);
-		} else if (bRequest == 0) {
-			funDigitalWrite(LED, FUN_LOW);
-		}
-	}
-
-	LogUEvent(42, s->wRequestTypeLSBRequestMSB, s->lValueLSBIndexMSB, s->wLength );
+	LogUEvent(420, s->wRequestTypeLSBRequestMSB, s->lValueLSBIndexMSB, s->wLength );
 }

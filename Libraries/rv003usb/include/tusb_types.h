@@ -74,9 +74,7 @@
 #elif defined (__cplusplus) && __cplusplus >= 201103L
   #define TU_VERIFY_STATIC   static_assert
 #else
-  #define TU_VERIFY_STATIC   _Static_assert
-
-  // #define TU_VERIFY_STATIC(const_expr, _mess) enum { TU_XSTRCAT(_verify_static_, _TU_COUNTER_) = 1/(!!(const_expr)) }
+  #define TU_VERIFY_STATIC(const_expr, _mess) enum { TU_XSTRCAT(_verify_static_, _TU_COUNTER_) = 1/(!!(const_expr)) }
 #endif
 
 #ifdef __cplusplus
