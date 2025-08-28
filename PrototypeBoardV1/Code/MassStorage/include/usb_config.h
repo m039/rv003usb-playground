@@ -25,7 +25,6 @@
 #include <tinyusb_hid.h>
 #include <tusb_types.h>
 
-#define INSTANCE_DESCRIPTORS
 #ifdef INSTANCE_DESCRIPTORS
 
 // https://www.beyondlogic.org/usbnutshell/usb5.shtml#DeviceDescriptors
