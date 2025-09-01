@@ -1,4 +1,4 @@
-This repository is related to [the article (rus)](https://m039.ru/post/rv003usb-first-impression/), (not ready yet).
+This repository is related to [the article (rus)](https://m039.ru/post/rv003usb-first-impression/) (or [habr](https://habr.com/ru/companies/timeweb/articles/940910/)).
 
 ![Cover](Docs/Cover1.jpg)
 
