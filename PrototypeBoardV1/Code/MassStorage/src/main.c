@@ -5,13 +5,11 @@
 
 #include <prototype_boards.h>
 
-#define USE_SOFTWARE_RESET 0
+#define USE_SOFTWARE_RESET 1
 
 int main()
 {
 	SystemInit();
-
-	printf("Start\n");
 
 	funGpioInitA();
 
