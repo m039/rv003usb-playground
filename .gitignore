@@ -6,3 +6,4 @@ Sandbox/
 .vs
 obj
 *_backup
+*.bak
